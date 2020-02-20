@@ -10,7 +10,6 @@ let successeurs sommet graphe = snd (List.find (fun (s, succ) -> s = sommet) gra
 successeurs 4 graphe1;;
 
 (* 3. Inverser un graphe *)
-(* TODO: Amelioer l'algorithme *)
 let predecesseurs sommet graphe = List.fold_left (
         fun a (s, succ) -> if List.mem sommet succ then s::a
                            else a
