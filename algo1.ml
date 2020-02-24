@@ -23,7 +23,7 @@ inverse_graphe graphe1;;
 (* visited est la liste des sommets déja visités *)
 let rec parcours_sommet x visited graphe =
     let (l, v) = List.fold_left (
-                                     (* on ignore les sommets déjà visités *)
+                     (* on ignore les sommets déjà visités *)
                      fun (l, v) e -> if (List.mem e v) then (l, v)
 
                                      (* on parcours le graphe à partir du successeurs `e` *)
@@ -57,17 +57,25 @@ let parcours_prof graphe =
 
 (* 5. Rechercher les composantes fortement connexes par parcours du graphe et de son inverse. *)
 let connexites graphe =
+
     let inv_graph = inverse_graphe graphe
-    in let res =
+    in fst (
         List.fold_left ( fun (cnx, visited) e ->
+            (* on ignore les sommets déjà visités *)
             if (List.mem e visited) then (cnx, visited)
+
+            (* le parcours du graphe inverse à partir du sommet `e` en ordre suffixe
+               est un composant fortement connexe *)
             else let (composant, v) = parcours_sommet e visited inv_graph
-                 in  (composant::cnx, v)
+
+                (* on ajoute `composant` à la liste des composants fortement connexes *)
+                (* on mets à jour la liste des sommets visités *)
+                in  (composant::cnx, v)
         )
 
         ([], [])
         (parcours_prof graphe)
+    );;
 
-    in fst res;;
 
 connexites graphe1;;
