@@ -1,4 +1,4 @@
-(* Algorithme 01 *)
+(* Algorithme de parcours en profondeur du graphe et son inverse *)
 let graphe1 = [(1,[6;7;8]) ; (2,[1;4]) ; (3, [2]) ; (4, [3;5]) ; (5, [1]) ; (6, [5;7]) ; (7, []) ; (8, [6;7])];;
 
 (* 1. Retourne la liste de tous les sommets *)
@@ -18,8 +18,10 @@ let predecesseurs sommet graphe = List.fold_left (
 let inverse_graphe graphe = List.fold_left (fun a (s, succ) -> (s, (predecesseurs s graphe)) :: a ) [] graphe;;
 inverse_graphe graphe1;;
 
-(* 4. Efectuer le parcours en profondeur d’un graphe et retourner la liste des sommets parcourus en ordre sufxe (inversé). *)
-(* parcours du graphe à partir d'un sommet x *)
+
+
+(* 4. Efectuer le parcours en profondeur d’un graphe et retourner la liste des sommets parcourus en ordre suffixe (inversé). *)
+(* parcours du graphe à partir d'un sommet x     *)
 (* visited est la liste des sommets déja visités *)
 let rec parcours_sommet x visited graphe =
     let (l, v) = List.fold_left (
@@ -30,7 +32,7 @@ let rec parcours_sommet x visited graphe =
                                      else let (rl, rv) = parcours_sommet e v graphe
 
                                           (* on ajoute la liste des sommets parcourus à partir de `e` à la fin *)
-                                          (* on mets à jour la liste des sommets visités *)
+                                          (* on mets à jour la liste des sommets visités                       *)
                                           in  (rl @ l, rv)
                  )
 
@@ -69,13 +71,12 @@ let connexites graphe =
             else let (composant, v) = parcours_sommet e visited inv_graph
 
                 (* on ajoute `composant` à la liste des composants fortement connexes *)
-                (* on mets à jour la liste des sommets visités *)
+                (* on mets à jour la liste des sommets visités                        *)
                 in  (composant::cnx, v)
         )
 
         ([], [])
         (parcours_prof graphe)
     );;
-
 
 connexites graphe1;;
