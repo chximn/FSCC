@@ -57,6 +57,8 @@ let parcours_prof graphe =
     ([], [])
     (sommets graphe));;
 
+parcours_prof graphe1;;
+
 (* 5. Rechercher les composantes fortement connexes par parcours du graphe et de son inverse. *)
 let connexites graphe =
 
