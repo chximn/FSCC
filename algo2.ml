@@ -1,5 +1,9 @@
+
+
 (* Algorithme de tarjan *)
 let graphe1 = [(1,[6;7;8]) ; (2,[1;4]) ; (3, [2]) ; (4, [3;5]) ; (5, [1]) ; (6, [5;7]) ; (7, []) ; (8, [6;7])];;
+let graphe2  =[(1,[2]); (2, [5;3;6]); (3, [4;7]); (4, [3; 8]); (5,[1; 6]); (6,[7]); (7,[6]); (8, [4;7])];;
+
 
 (* Retourne la liste de tous les sommets *)
 let sommets = List.map fst;;
@@ -164,4 +168,4 @@ let tarjan graph =
 
     in composants;;
 
-tarjan graphe1;;
+tarjan graphe2;;
