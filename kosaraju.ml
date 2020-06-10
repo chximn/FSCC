@@ -1,4 +1,4 @@
-(* Algorithme de parcours en profondeur du graphe et son inverse *)
+(* Algorithme de parcours en profondeur du graphe et son inverse (Kosaraju) *)
 let graphe1 = [(1,[6;7;8]) ; (2,[1;4]) ; (3, [2]) ; (4, [3;5]) ; (5, [1]) ; (6, [5;7]) ; (7, []) ; (8, [6;7])];;
 
 (* 1. Retourne la liste de tous les sommets *)
